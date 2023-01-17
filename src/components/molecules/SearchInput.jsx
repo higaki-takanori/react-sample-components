@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/input/input";
 
-export const SearchInput = memo(() => {
+export const SearchInput = () => {
   console.log("SearchInput");
   return (
     <SContainer>
@@ -13,7 +13,7 @@ export const SearchInput = memo(() => {
       </SButtonWrapper>
     </SContainer>
   );
-});
+};
 
 const SContainer = styled.div`
   display: flex;
