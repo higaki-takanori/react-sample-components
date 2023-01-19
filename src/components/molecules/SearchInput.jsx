@@ -1,8 +1,10 @@
+import React, { memo } from "react";
 import styled from "styled-components";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/input/input";
 
 export const SearchInput = () => {
+  console.log("SearchInput");
   return (
     <SContainer>
       <Input placeholder="input search" />

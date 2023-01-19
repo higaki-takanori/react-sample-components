@@ -1,7 +1,11 @@
+// import { useContext } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+// import { UserContext } from "../../providers/UserProvider";
+import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/user/UserCard";
+import { useRecoilState } from "recoil";
+import { userState } from "../../store/userState";
 
 const users = [...Array(10).keys()].map((val) => {
   return {
@@ -16,28 +20,20 @@ const users = [...Array(10).keys()].map((val) => {
     website: "https://google.com",
   };
 });
-const user = {
-  name: "aaa",
-  image: "https://source.unsplash.com/T-0EW-SEbsE",
-  email: "aaa@example.com",
-  phone: "1234-1234-123",
-  company: {
-    name: "test company",
-  },
-  website: "https://google.com",
-};
 
 export const Users = () => {
-  const { state } = useLocation();
-  const isAdmin = state ? state.isAdmin : false;
-
+  // const { userInfo, setUserInfo } = useContext(UserContext);
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+  const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
   return (
     <SContainer>
       <h2>Users Page</h2>
       <SearchInput />
+      <br />
+      <SecondaryButton onClick={onClickSwitch}>Switch</SecondaryButton>
       <SUserArea>
         {users.map((user) => (
-          <UserCard key={user.id} user={user} isAdmin={isAdmin} />
+          <UserCard key={user.id} user={user} />
         ))}
       </SUserArea>
     </SContainer>
